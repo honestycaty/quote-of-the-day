@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "quote": "The best way to get started is to quit talking and begin doing.",
+    "author": "Walt Disney"
+  },
+  {
+    "id": 2,
+    "quote": "Don't let yesterday take up too much of today.",
+    "author": "Will Rogers"
+  },
+  {
+    "id": 3,
+    "quote": "It's not whether you get knocked down, it's whether you get up.",
+    "author": "Vince Lombardi"
+  },
+  {
+    "id": 4,
+    "quote": "If you are working on something exciting that you really care about, you don't have to be pushed. The vision pulls you.",
+    "author": "Steve Jobs"
+  },
+  {
+    "id": 5,
+    "quote": "People who are crazy enough to think they can change the world are the ones who do.",
+    "author": "Rob Siltanen"
+  },
+  {
+    "id": 6,
+    "quote": "Failure will never overtake me if my determination to succeed is strong enough.",
+    "author": "Og Mandino"
+  },
+  {
+    "id": 7,
+    "quote": "We may encounter many defeats but we must not be defeated.",
+    "author": "Maya Angelou"
+  },
+  {
+    "id": 8,
+    "quote": "Knowing is not enough; we must apply. Wishing is not enough; we must do.",
+    "author": "Johann Wolfgang Von Goethe"
+  },
+  {
+    "id": 9,
+    "quote": "Imagine your life is perfect in every respect; what would it look like?",
+    "author": "Brian Tracy"
+  },
+  {
+    "id": 10,
+    "quote": "We generate fears while we sit. We overcome them by action.",
+    "author": "Dr. Henry Link"
+  }
+]
