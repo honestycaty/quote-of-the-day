@@ -1,7 +1,7 @@
 import json
 import random
 from datetime import date
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
 
@@ -12,15 +12,7 @@ with open("quotes.json", "r") as f:
 
 @app.route("/", methods=["GET"])
 def home():
-    return jsonify({
-        "message": "Quote of the Day API",
-        "endpoints": {
-            "random quote": "/quote/random",
-            "quote of the day": "/quote/today",
-            "quote by id": "/quote/<id>",
-            "all quotes": "/quotes"
-        }
-    })
+    return render_template("index.html")
 
 
 @app.route("/quote/random", methods=["GET"])

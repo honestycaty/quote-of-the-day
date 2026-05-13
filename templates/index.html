@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quote of the Day</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #f2f2f7;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+      padding: 24px;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 48px 40px;
+      max-width: 640px;
+      width: 100%;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      text-align: center;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #8e8e93;
+      margin-bottom: 32px;
+    }
+
+    .quote-mark {
+      font-size: 64px;
+      line-height: 0.6;
+      color: #007aff;
+      font-family: Georgia, serif;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .quote-text {
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.55;
+      color: #1c1c1e;
+      margin-bottom: 28px;
+      min-height: 80px;
+    }
+
+    .author {
+      font-size: 15px;
+      font-weight: 600;
+      color: #007aff;
+      margin-bottom: 40px;
+    }
+
+    .divider {
+      height: 1px;
+      background: #e5e5ea;
+      margin-bottom: 32px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      border: none;
+      transition: opacity 0.15s ease, transform 0.1s ease;
+      font-family: inherit;
+    }
+
+    button:active {
+      transform: scale(0.97);
+      opacity: 0.85;
+    }
+
+    .btn-primary {
+      background: #007aff;
+      color: #ffffff;
+    }
+
+    .btn-secondary {
+      background: #e5e5ea;
+      color: #1c1c1e;
+    }
+
+    .date-badge {
+      display: inline-block;
+      background: #f2f2f7;
+      color: #8e8e93;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+    }
+
+    .loading {
+      color: #8e8e93;
+      font-size: 16px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      body { background: #1c1c1e; }
+      .card { background: #2c2c2e; box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+      .quote-text { color: #f2f2f7; }
+      .btn-secondary { background: #3a3a3c; color: #f2f2f7; }
+      .date-badge { background: #3a3a3c; }
+      .divider { background: #3a3a3c; }
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <p class="label">✦ Quote of the Day</p>
+    <span class="quote-mark">"</span>
+    <p class="quote-text loading" id="quote-text">Loading...</p>
+    <p class="author" id="author"></p>
+    <div class="date-badge" id="date-badge"></div>
+    <div class="divider"></div>
+    <div class="buttons">
+      <button class="btn-primary" onclick="loadToday()">Today's Quote</button>
+      <button class="btn-secondary" onclick="loadRandom()">Random Quote</button>
+    </div>
+  </div>
+
+  <script>
+    async function loadToday() {
+      setLoading();
+      const res = await fetch("/quote/today");
+      const data = await res.json();
+      showQuote(data, `📅 ${data.date}`);
+    }
+
+    async function loadRandom() {
+      setLoading();
+      const res = await fetch("/quote/random");
+      const data = await res.json();
+      showQuote(data, "🎲 Random Quote");
+    }
+
+    function showQuote(data, badgeText) {
+      document.getElementById("quote-text").textContent = data.quote;
+      document.getElementById("quote-text").classList.remove("loading");
+      document.getElementById("author").textContent = "— " + data.author;
+      document.getElementById("date-badge").textContent = badgeText;
+    }
+
+    function setLoading() {
+      document.getElementById("quote-text").textContent = "Loading...";
+      document.getElementById("quote-text").classList.add("loading");
+      document.getElementById("author").textContent = "";
+      document.getElementById("date-badge").textContent = "";
+    }
+
+    // Load today's quote on page open
+    loadToday();
+  </script>
+</body>
+</html>
